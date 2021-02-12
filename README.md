@@ -37,7 +37,7 @@ This JavaScript style has just three changes from Airbnb style.
     ```javascript
     // original
     if (isJedi) {
-      fight ();
+      fight();
     }
 
     // modified
@@ -46,7 +46,7 @@ This JavaScript style has just three changes from Airbnb style.
     }
 
     // original
-    if (isJedi) fight ();
+    if (isJedi) fight();
 
     // modified
     if(isJedi) fight();
