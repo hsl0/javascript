@@ -4,11 +4,13 @@
 
 ## Table of Contents
 
-1. [Naming](#naming)
-1. [Ordering](#ordering)
-1. [Nesting](#nesting)
-1. [Inline](#inline)
-1. [Themes](#themes)
+- [Airbnb CSS-in-JavaScript Style Guide](#airbnb-css-in-javascript-style-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Naming](#naming)
+  - [Ordering](#ordering)
+  - [Nesting](#nesting)
+  - [Inline](#inline)
+  - [Themes](#themes)
 
 ## Naming
 

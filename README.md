@@ -1,4 +1,4 @@
-# Airbnb JavaScript Style Guide() {
+# Modified Airbnb JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
 
@@ -17,6 +17,48 @@ Other Style Guides
   - [CSS-in-JavaScript](css-in-javascript/)
   - [CSS & Sass](https://github.com/airbnb/css)
   - [Ruby](https://github.com/airbnb/ruby)
+
+## Differences with the original Airbnb Style
+This JavaScript style has just three changes from Airbnb style.
+
+ - [19.1](#whitespace--spaces) Original style uses 2 spaces for indent, but this uses 4 spaces for indent.
+    ```javascript
+    // original
+    function foo() {
+    ∙∙let name;
+    }
+    
+    // modified
+    function foo() {
+    ∙∙∙∙let name;
+    }
+    ```
+ - [19.3](#whitespace--around-keywords) It places no space before the opening parenthesis in control statements (`if`, `while` etc.) but the original places a space.
+    ```javascript
+    // original
+    if (isJedi) {
+      fight ();
+    }
+
+    // modified
+    if(isJedi) {
+      fight();
+    }
+
+    // original
+    if (isJedi) fight ();
+
+    // modified
+    if(isJedi) fight();
+    ```
+  - [23.10](#naming--uppercase) The original style never allows uppercase constant for private constants in files that don't exported, but this allows when it's symbol.
+    ```javascript
+    // original - never
+    const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
+
+    // modified - allowed for symbols only.
+    const PRIVATE_KEY = Symbol('somekey');
+    ```
 
 ## Table of Contents
 
@@ -2469,12 +2511,12 @@ Other Style Guides
 ## Whitespace
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
+  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 4 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
 
     ```javascript
     // bad
     function foo() {
-    ∙∙∙∙let name;
+    ∙∙let name;
     }
 
     // bad
@@ -2484,7 +2526,7 @@ Other Style Guides
 
     // good
     function baz() {
-    ∙∙let name;
+    ∙∙∙∙let name;
     }
     ```
 
@@ -2516,18 +2558,24 @@ Other Style Guides
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [19.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing.html)
+  - [19.3](#whitespace--around-keywords) Place no space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing.html)
 
     ```javascript
     // bad
-    if(isJedi) {
+    if (isJedi) {
       fight ();
     }
 
     // good
-    if (isJedi) {
+    if(isJedi) {
       fight();
     }
+
+    // bad
+    if (isJedi) fight ();
+
+    // good
+    if(isJedi) fight();
 
     // bad
     function fight () {
@@ -3230,7 +3278,7 @@ Other Style Guides
 
 **[⬆ back to top](#table-of-contents)**
 
-## Naming Conventions
+##  Conventions
 
   <a name="naming--descriptive"></a><a name="22.1"></a>
   - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
@@ -3430,16 +3478,13 @@ Other Style Guides
     ```
 
   <a name="naming--uppercase"></a>
-  - [23.10](#naming--uppercase) You may optionally uppercase a constant only if it (1) is exported, (2) is a `const` (it can not be reassigned), and (3) the programmer can trust it (and its nested properties) to never change.
+  - [23.10](#naming--uppercase) You may optionally uppercase a constant only if it (1) is exported or Symbol type, (2) is a `const` (it can not be reassigned), and (3) the programmer can trust it (and its nested properties) to never change.
 
     > Why? This is an additional tool to assist in situations where the programmer would be unsure if a variable might ever change. UPPERCASE_VARIABLES are letting the programmer know that they can trust the variable (and its properties) not to change.
     - What about all `const` variables? - This is unnecessary, so uppercasing should not be used for constants within a file. It should be used for exported constants however.
     - What about exported objects? - Uppercase at the top level of export (e.g. `EXPORTED_OBJECT.key`) and maintain that all nested properties do not change.
 
     ```javascript
-    // bad
-    const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
-
     // bad
     export const THING_TO_BE_CHANGED = 'should obviously not be uppercased';
 
@@ -3453,6 +3498,14 @@ Other Style Guides
 
     // better in most cases
     export const API_KEY = 'SOMEKEY';
+
+    // ---
+
+    // bad
+    const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
+
+    // private variables are allowed only for Symbol type
+    const PRIVATE_KEY = Symbol('somekey');
 
     // ---
 
